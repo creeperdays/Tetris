@@ -1,3 +1,4 @@
+#include "tile.h"
 #ifndef SCREEN_H 
 #define SCREEN_H 
 
@@ -24,6 +25,8 @@ Initialises the screen
 void initScreen(); 
 
 void drawScreen(); 
+
+void drawTile(struct tile *t, int x, int y); 
 
 
 

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "screen.h"
+#include "tile.h"
 
 /*
 This file will contain the main function execution for Tetris 
@@ -12,6 +13,10 @@ int main(void) {
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Tetris");
 
     initScreen(); 
+
+    printf("hello, world\n");
+
+    drawTile(&t1, 0, 0); 
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------

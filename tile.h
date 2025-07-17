@@ -32,11 +32,4 @@ extern struct tile t6;
 // This tile stores the T tile
 extern struct tile t7; 
 
-
-
-
-
-
-
-
 #endif
