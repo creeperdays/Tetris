@@ -114,7 +114,7 @@ void clearCurrentTile() {
     }
 }
 
-void drawCurrentTile() {
+void drawCurrentTile() { 
     int i; 
     int j; 
 
@@ -150,6 +150,70 @@ void shiftCurrentTileDown() {
         currentTilePosY++; 
         drawCurrentTile(); 
     }
+}
+
+
+
+void rotateCurrentTile() {
+    clearCurrentTile();
+    // To rotate a tile clockwise we must transpose the tile matrix then reverse the rows
+
+    //first transpose the tile matrix 
+    int i; 
+    int j; 
+
+    int temp = currentTileLength; 
+    int temp1 = currentTileWidth; 
+    
+    int temp2; 
+
+    for (i = 0; i < 4; i++) {
+        for (j = i+1; j < 4; j++) {
+            temp2 = currentTile[j][i]; 
+            currentTile[j][i] = currentTile[i][j];
+            currentTile[i][j] = temp2;  
+            
+        }
+    }
+
+    printCurrentTile(); 
+
+    //The new matrix has switched dimensions 
+    currentTileLength = temp1; 
+    currentTileWidth = temp; 
+
+    //Then we can reverse the rows of the matrix 
+
+    for (i = 0; i < currentTileLength; i++) {
+        int low = 0; 
+        int high = currentTileWidth - 1; 
+
+        while (low < high) {
+            int temp3 = currentTile[i][low]; 
+            currentTile[i][low] = currentTile[i][high]; 
+            currentTile[i][high] = temp3; 
+
+            low++; 
+            high--; 
+        }
+    }
+
+     
+    drawCurrentTile(); 
+}
+
+void printCurrentTile() {
+    int i; 
+    int j; 
+
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            printf("%d ", currentTile[i][j]); 
+        }
+        printf("\n"); 
+    }
+
+    printf("\n"); 
 }
 
 

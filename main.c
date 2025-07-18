@@ -16,8 +16,8 @@ int main(void) {
 
     printf("hello, world\n");
 
-    drawTile(&t2, 3, 3); 
-    setCurrentTile(&t2, 3, 3); 
+    drawTile(&t7, 3, 3); 
+    setCurrentTile(&t7, 3, 3); 
 
     SetTargetFPS(10);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -41,6 +41,12 @@ int main(void) {
         if (IsKeyDown(KEY_DOWN)) {
             shiftCurrentTileDown(); 
         }
+
+        if (IsKeyDown(KEY_UP)) {
+            rotateCurrentTile(); 
+        }
+
+
 
         
 

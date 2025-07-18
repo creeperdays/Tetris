@@ -86,6 +86,12 @@ void shiftCurrentTileDown();
  */
 void rotateCurrentTile(); 
 
+/**
+ * This function prints the current tile 
+ * Used for debugging purposes
+ */
+void printCurrentTile(); 
+
 
 
 #endif
