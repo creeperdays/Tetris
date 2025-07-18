@@ -8,6 +8,16 @@
 // The size of the screen
 int screen[SCREEN_HEIGHT][SCREEN_WIDTH]; 
 
+int currentTile[4][4]; 
+
+int currentTileWidth; 
+
+int currentTileLength; 
+
+int currentTilePosX; 
+
+int currentTilePosY; 
+
 
 /*
  * This function initialises all screen space to zeros
@@ -56,19 +66,90 @@ void drawScreen() {
 
 }
 
+
+
+
 void drawTile(struct tile *t, int x, int y) {
     int posX = x; 
-    int posY = (SCREEN_HEIGHT - 1) - y; 
+    int posY = y; 
 
     int i; 
     int j; 
 
     for (i = 0; i < t->length; i++) {
         for (j = 0; j < t->width; j++) {
-            screen[posY - i][posX + j] = t->container[(3) - i][j];  
+            screen[posY + i][posX + j] = t->container[i][j];  
         }
     }
 
+}
+
+void setCurrentTile(struct tile *t, int x, int y) {
+    currentTileWidth = t->width; 
+    currentTileLength = t->length; 
+
+    int i; 
+    int j; 
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            currentTile[i][j] = t->container[i][j]; 
+        }
+    }
+
+    currentTilePosX = x; 
+    currentTilePosY = y; 
+}
+
+void clearCurrentTile() {
+    int i; 
+
+    int j; 
+
+    for (i = 0; i < currentTileLength; i++) {
+        for (j = 0; j < currentTileWidth; j++) {
+            if (currentTile[i][j] == 1) {
+                screen[currentTilePosY + i][currentTilePosX + j] = 0; 
+            }
+        }
+    }
+}
+
+void drawCurrentTile() {
+    int i; 
+    int j; 
+
+    for (i = 0; i < currentTileLength; i++) {
+        for (j = 0; j < currentTileWidth; j++) {
+            if (currentTile[i][j] == 1) {
+                screen[currentTilePosY + i][currentTilePosX +j] = 1; 
+            }
+        }
+    }
+}
+
+
+void shiftCurrentTileRight() {
+    if (currentTilePosX + currentTileWidth < SCREEN_WIDTH) {
+        clearCurrentTile(); 
+        currentTilePosX++; 
+        drawCurrentTile(); 
+    }
+}
+
+void shiftCurrentTileLeft() {
+    if (currentTilePosX - 1 >= 0) {
+        clearCurrentTile(); 
+        currentTilePosX--; 
+        drawCurrentTile(); 
+    }
+}
+
+void shiftCurrentTileDown() {
+    if (currentTilePosY + currentTileLength < SCREEN_HEIGHT) {
+        clearCurrentTile(); 
+        currentTilePosY++; 
+        drawCurrentTile(); 
+    }
 }
 
 

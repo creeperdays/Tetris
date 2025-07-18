@@ -16,9 +16,10 @@ int main(void) {
 
     printf("hello, world\n");
 
-    drawTile(&t1, 0, 0); 
+    drawTile(&t2, 3, 3); 
+    setCurrentTile(&t2, 3, 3); 
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(10);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -28,6 +29,20 @@ int main(void) {
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
+
+        if (IsKeyDown(KEY_RIGHT)) {
+            shiftCurrentTileRight(); 
+        }
+
+        if (IsKeyDown(KEY_LEFT)) {
+            shiftCurrentTileLeft(); 
+        }
+
+        if (IsKeyDown(KEY_DOWN)) {
+            shiftCurrentTileDown(); 
+        }
+
+        
 
         // Draw
         //----------------------------------------------------------------------------------

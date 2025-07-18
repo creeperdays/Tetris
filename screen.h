@@ -19,14 +19,72 @@ This header file defines the functions related to the screen display of Tetris
 
 extern int screen[SCREEN_HEIGHT][SCREEN_WIDTH];
 
+extern int currentTile[4][4]; 
+
+extern int currentTileWidth; 
+
+extern int currentTileLength; 
+
+extern int currentTilePosX; 
+
+extern int currentTilePosY; 
+
 /*
 Initialises the screen
 */
 void initScreen(); 
 
+/**
+ * Draws the screen on to the window
+ */
 void drawScreen(); 
 
+
+/**
+ * Draws the tile on to the screen 
+ */
+
 void drawTile(struct tile *t, int x, int y); 
+
+/**
+ * Sets the current tile to be the new tile
+ */
+void setCurrentTile(struct tile *t, int x, int y); 
+
+/**
+ * This function clears the current tile off the screen
+ */
+void clearCurrentTile(); 
+
+/**
+ * This function draws the current tile on the screen  
+ * This function only uses global variables as its input
+ */
+void drawCurrentTile(); 
+
+/**
+ * This function shifts the current tile to the right
+ */
+void shiftCurrentTileRight(); 
+
+/**
+ * This function shifts the current tile to the left
+ */
+
+void shiftCurrentTileLeft(); 
+
+
+/**
+ * This function shifts the current tile down 
+ */
+void shiftCurrentTileDown(); 
+
+/**
+ * This function will rotate the current tile
+ * Then once the current tile has been rotated then it also 
+ * draws this new current tile onto the screen
+ */
+void rotateCurrentTile(); 
 
 
 
